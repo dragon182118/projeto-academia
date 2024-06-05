@@ -52,3 +52,52 @@ nav > abbr >#login:hover {
     transition-duration: 0.5s;
     color: gray;
 }
+
+main {
+    background: black;
+    color: white;
+    padding: 15px;
+    font-family: var(--font1);
+}
+.box {
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.39);
+    box-shadow: inset 0px 0px 10px black;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+article > h2 {
+    background-image: linear-gradient(to right, rgb(224, 162, 15),transparent);
+    padding: 5px;
+    text-indent: 5px;
+    text-shadow: 1px 1px 3px black;
+}
+article > p {
+    padding: 10px;
+    line-height: 2em;
+    text-indent: 5px;
+}
+
+#ifr {
+    height: 350px;
+    position: relative;
+}
+#ifr2 > h2 {
+    text-align: center;
+    padding: 10px;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.226);
+}
+#ifr2 {
+    height: 300px;
+    width: 100%;
+    
+}
+
+#iframe { 
+    position: absolute;
+    left: 10%;
+    height: 260px;
+    width: 80%;
+    box-shadow:  0px 0px 5px lightgray;
+}
