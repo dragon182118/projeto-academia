@@ -91,13 +91,12 @@ article > p {
 #ifr2 {
     height: 300px;
     width: 100%;
-    
 }
-
 #iframe { 
     position: absolute;
     left: 10%;
     height: 260px;
     width: 80%;
     box-shadow:  0px 0px 5px lightgray;
+    border-radius: 5px;
 }
