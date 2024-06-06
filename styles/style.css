@@ -148,9 +148,10 @@ footer {
     text-align: center;
     font-weight: bold;
     background-color: var(--cor1);
+    padding-bottom: 6px;
 }
 footer > p {
-    padding: 10px 0px 0px 0px;
+    padding: 10px 0px 3px 0px;
     font-size: 2.5vw;
 }
 #fta {  
