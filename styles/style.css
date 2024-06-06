@@ -141,3 +141,22 @@ tfoot > tr {
     width: 0px;
     height: 0px;
 }
+footer {
+    height: 30px;
+    text-align: center;
+    font-weight: bold;
+    background-color: var(--cor1);
+}
+footer > p {
+    padding: 5px;
+}
+#fta {  
+    color: rgb(59, 59, 59);
+}
+#fta:hover {
+    background-color: lightgray;
+    color: black;
+    transition-duration: 0.7s;
+    padding: 5px;
+    border-radius: 10px;
+}
