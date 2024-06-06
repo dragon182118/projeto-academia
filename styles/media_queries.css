@@ -1,1 +1,43 @@
 @charset "UTF-8";
+/* Demais estilos */
+/* Typical Device Breakpoints :
+---------------------------------
+telas menores: 320 - 480px
+celular: 481px - 768px
+tablet: 769px - 1024px
+desktop: 1025px - 1200px
+telas maiores: 1201px - infinity
+---------------------------------
+*/
+@media print {
+    *{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 1.01em;
+    }
+    main {
+        border: 2px solib black;
+        color: black;
+        background-color: white;
+    }
+    main h1, h2 {
+        text-shadow: none;
+        box-shadow: none;
+    }
+    main::after {
+        text-align: center;
+        content: "impressão feita através do site de www.github.com/dragon182118";
+        text-decoration: overline;
+    }
+    article.box{
+        background-color: white;
+        color: black;
+        text-shadow: none;
+        box-shadow: none;
+    }
+    caption{
+        color: black;
+    }
+    footer {display: none;}
+    #ifr{display: none;}
+    nav{display: none;}
+}
