@@ -9,6 +9,10 @@ desktop: 1025px - 1200px
 telas maiores: 1201px - infinity
 ---------------------------------
 */
+:root {
+    --font1: "Reddit Sans", Arial, Helvetica, sans-serif;
+    --cor1: rgb(255, 182, 18);
+}
 @media print {
     *{
         font-family: 'Courier New', Courier, monospace;
@@ -40,4 +44,97 @@ telas maiores: 1201px - infinity
     footer {display: none;}
     #ifr{display: none;}
     nav{display: none;}
+}
+@media screen and (min-width: 769px) and (max-width: 1024px){ /*Tablet*/
+    main {
+        background-image: linear-gradient(black 50%, #8f8f8f);
+        padding: 30px;
+        
+    }
+    div#back {
+        width: 100% ;  
+        background: var(--cor1) url(../images/Academia3.jpg) center no-repeat;
+        background-size: cover;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgb(0, 0, 0);
+    }
+    #cot1 {
+        display: inline-block;
+        width: 45%;
+        margin: 30px 0px 10px 20px;
+        height: 350px;
+    }
+    #cot1 > article {
+        height: 100%;
+    }
+    #cot1 > article > p{
+        font-size: 1.1em;
+        line-height: 2.5em;
+    }
+    #ifr {
+        width: 45%;
+        float: right; 
+        margin: 30px 20px 10px 0px;
+    }
+    #ifr > h2 {
+        background-image: linear-gradient(to left, gray,transparent);
+    }
+    footer {
+        background-image: linear-gradient(#8f8f8f,black,transparent);
+        color: white;
+    }
+    #fta {  
+        color: rgb(194, 194, 194);
+    }
+}
+@media screen and (min-width: 1024px){
+    main {
+        margin-bottom: 0px;
+        padding: 50px 40px 0px;
+        background-color: rgb(175 125 12);;
+        
+    }
+    div#back {
+        width: 100%;
+        background: var(--cor1) url(../images/Academia2.jpg) center no-repeat;
+        background-size: cover;
+        box-shadow: 0px 0px 10px rgb(0, 0, 0);
+        border-radius: 10px 10px 0px 0px;
+        padding-top: 20px;
+    }
+    #cot1 {
+        display: inline-block;
+        width: 45%;
+        margin: 0px 0px 10px 20px;
+        height: 350px;
+    }
+    #cot1 > article {
+        height: 100%;
+    }
+    article > h2 {
+        background-image: linear-gradient(to right, black, transparent);
+    }
+    #cot1 > article > p{
+        font-size: 1.2em;
+        line-height: 2.5em;
+    }
+    #ifr {
+        width: 45%;
+        float: right; 
+        margin: 0px 20px 10px 0px;
+    }
+    #ifr > h2 {
+        background-image: linear-gradient(to left, black,transparent);
+    }
+    footer {
+        background-color: black;
+        color: white;
+        height: auto;
+    }
+    footer > p {
+        font-size: 1.5vw;
+    }
+    #fta {  
+        color: rgb(194, 194, 194);
+    }
 }
