@@ -150,8 +150,8 @@ footer {
     background-color: var(--cor1);
 }
 footer > p {
-    padding: 5px;
-    font-size: inherit;
+    padding: 10px 0px 0px 0px;
+    font-size: 2vw;
 }
 #fta {  
     color: rgb(59, 59, 59);
