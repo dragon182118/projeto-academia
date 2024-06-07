@@ -4,8 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto-Academia</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style-l.css" media="all">
+    <link rel="stylesheet" href="styles/media-queries-l.css">
 </head>
 <body>
-    
+    <main>
+        <section id="login">
+            <div id="img"></div>
+            <div id="cont">
+                <h1>Login</h1>
+                <form action="#" method="post" autocomplete="on">
+                    <div class="container" id="email">
+                        <span class="material-icons">person</span>
+                        <label for="name"></label>
+                        <input type="text" name="name" id="name" autocomplete="nickname" required placeholder="Seu apelido"
+                        minlength="3" maxlength="20" class="ibox">
+                    </div>
+                    <div class="container" id="password">
+                        <span class="material-icons">vpn_key</span>
+                        <label for="password"></label>
+                        <input type="password" name="password" id="password" required minlength="8" maxlength="24" class="ibox" placeholder="Sua senha">
+                    </div>
+                    <div class="container" id="buttons">
+                        <label for="submit"></label>
+                        <input type="submit" name="submit" id="submit" class="stbt">
+                        <label for="sing-in"></label>
+                        <input type="submit" name="sing-in" id="sing-in" value="Registrar" class="stbt">
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

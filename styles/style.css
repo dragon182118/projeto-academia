@@ -59,6 +59,7 @@ main {
     color: white;
     padding: 15px;
     font-family: var(--font1);
+    
 }
 .box {
     width: 100%;
@@ -67,6 +68,7 @@ main {
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
+    transition: width .3s, heigth .3s;
 }
 article > h2 {
     background-image: linear-gradient(to right, rgb(224, 162, 15),transparent);
@@ -114,6 +116,7 @@ table {
     border-collapse: collapse; 
     background-color: white;
     color: black;    
+    transition: width .3s, heigth .3s;
 }
 caption {
     color: white;
