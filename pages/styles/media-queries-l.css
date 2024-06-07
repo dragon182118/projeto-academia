@@ -1,1 +1,91 @@
 @charset "UTF-8";
+
+@media screen and (min-width: 769px) and (max-width: 1024px){ /*Tablet*/
+    main{
+        height: 100%;
+        background-image: linear-gradient( to bottom, #8E6823,#FFCC77);
+    }
+    section{
+        height: 310px;
+        width: 80%;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    div#img {
+        width: 30%;
+        height: 100%;
+        display: inline-block;
+        text-align: left;
+        background: black url(../../images/login2.jpg) center no-repeat;
+        background-size: cover;
+         
+    }
+    div#cont {
+        display: inline-block;
+        position: absolute;
+        width: 70%;
+        height: 100%;
+    }
+    #cont > h1 {
+        padding: 10px;
+    }
+    .container {
+        margin-bottom: 10px;
+    }
+    div#buttons {
+        width: 82%;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+        display: block;
+    }
+    .stbt {
+        font-size: 1em;
+    }
+}
+@media screen and (min-width: 1024px){
+    * {
+        font-size: 1em;
+    }
+    main{
+        height: 100vh;
+        background-image: linear-gradient( to bottom, #8E6823,#FFCC77);
+    }
+    section{
+        height: 340px;
+        width: 90%;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    div#img {
+        width: 50%;
+        height: 100%;
+        display: inline-block;
+        text-align: right; 
+        background: url(../../images/login2.jpg);
+        background-size: cover;
+        position: absolute;
+        right: 0px;
+    }
+
+    div#cont {
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+    }
+    form {
+        padding: 10px 40px;
+    }
+    #cont > h1 {
+        padding: 10px;
+        font-size: 2em;
+        font-weight: 700;
+    }
+    div#buttons {
+        width: 90%;
+        padding: 10px;
+        border-radius: 10px;
+        position: relative;
+    }
+    
+}
