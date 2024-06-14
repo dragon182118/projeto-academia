@@ -10,7 +10,6 @@ window.onload = function () {
     });
     // Cria o novo elemento na tabela
     function criarTabela(contador) {
-        let segundaLinha = false
         for (let i = 0; i < contador; i++) {
             const tbody = document.getElementById("tCorpo");
 
@@ -49,12 +48,7 @@ window.onload = function () {
             trTabela.appendChild(tdTabela3);
             trTabela.appendChild(tdTabela4);
 
-            tbody.appendChild(trTabela);
-
-            if (i == 1) {
-                segundaLinha = true;
-                Verificador(segundaLinha)
-            }
+            tbody.appendChild(trTabela);   
         }
           
     }
