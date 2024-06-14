@@ -1,6 +1,7 @@
 window.onload = function () {
     // Ligação com o click da checkbox
     let alavanca = 0;
+
     document.getElementById("cbox").addEventListener("click", (e) => {
         alavanca++
         if (alavanca <= 1) {
@@ -9,9 +10,16 @@ window.onload = function () {
         alavanca = 2;
     });
     // Cria o novo elemento na tabela
-    function criarTabela(contador) {
+    const criarTabela = (contador) => {
         for (let i = 0; i < contador; i++) {
+
             const tbody = document.getElementById("tCorpo");
+
+            const exEl = document.getElementById(i + 2)
+
+            if (exEl) {
+                exEl.parentElement.parentElement.remove();
+            }
 
             const trTabela = document.createElement("tr");
 
@@ -48,25 +56,19 @@ window.onload = function () {
             trTabela.appendChild(tdTabela3);
             trTabela.appendChild(tdTabela4);
 
-            tbody.appendChild(trTabela);   
+            tbody.appendChild(trTabela);
+
+
+            let contador2 = i + 2;
+
+            trConstructor(contador2);
         }
-          
     }
-    // Verifica a quantidade de linhas na tabela
-    document.querySelectorAll(".number").forEach(el => {
-        let aryValue = []
-        aryValue.push(el.textContent);
-        console.log(aryValue)
-        let contador2 = 1;
-        aryValue.forEach(el => {
-            if (el > contador2) {
-                contador2 = el;
-            }
+    function trConstructor(cc) {
+        const label = document.getElementById(cc);
+        label.addEventListener('click', () => {
+            criarTabela(cc);
         });
-        let trCriador = document.getElementById(contador2);
-        trCriador.addEventListener('click', () => {
-            criarTabela(contador2);
-        });
-    });
+    }
 }
 
