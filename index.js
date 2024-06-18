@@ -1,14 +1,34 @@
 window.onload = function () {
-    // Ligação com o click da checkbox
+    // Declarações globais
     let alavanca = 0;
+    const dDia = document.querySelector('#dia');
+    const dMes = document.querySelector('#mes');
+    const dAno = document.querySelector('#ano');
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth();
 
+    // Registro dos dias
+    const diasdoMes = () => {
+
+        let data = new Date(year, month, 1);
+
+        data.setMonth(data.getMonth() + 1);
+        data.setDate(0);
+
+        return data.getDate();
+    }
+
+    // Ligação com o click da checkbox
     document.getElementById("cbox").addEventListener("click", (e) => {
         alavanca++
         if (alavanca <= 1) {
             criarTabela(1);
         }
         alavanca = 2;
+        dDia.textContent = 2;
     });
+
+
     // Cria o novo elemento na tabela
     const criarTabela = (contador) => {
         for (let i = 0; i < contador; i++) {
@@ -58,17 +78,42 @@ window.onload = function () {
 
             tbody.appendChild(trTabela);
 
+        }
+        dDia.textContent++;
 
-            let contador2 = i + 2;
+        let contador2 = contador + 1;
 
+        if (dDia.textContent == diasdoMes()) {
             trConstructor(contador2);
+        } else {
+
+            // Mudanças dos dias 
+            if (dDia.textContent == diasdoMes()) {
+                dMes.textContent++; dDia.textContent = 1
+            };
+            if (dMes.textContent == 12) {
+                dAno.textContent++; dMes.textContent = ''
+            };
         }
     }
+    const callbacks = {};
+
     function trConstructor(cc) {
-        const label = document.getElementById(cc);
-        label.addEventListener('click', () => {
-            criarTabela(cc);
-        });
+            const input = document.getElementById(`cbox${cc}`);
+            const callback = () => {
+                criarTabela(cc);
+            };
+
+            callbacks[cc] = callback;
+            input.addEventListener('click', callback);
+
+            for (let y = 2; y < cc; y++) {
+                let input2 = document.getElementById(`cbox${y}`);
+                if (input2 && callbacks[y]) {
+                    input2.removeEventListener('click', callbacks[y]);
+                    input2.checked = true;
+                }
+            }
     }
 }
 
