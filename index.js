@@ -19,7 +19,7 @@ window.onload = function () {
     }
 
     // Ligação com o click da checkbox
-    document.getElementById("cbox").addEventListener("click", (e) => {
+    document.getElementById("cbox").addEventListener("click", () => {
         alavanca++
         if (alavanca <= 1) {
             criarTabela(1);
@@ -83,37 +83,61 @@ window.onload = function () {
 
         let contador2 = contador + 1;
 
-        if (dDia.textContent == diasdoMes()) {
+        if (!(dDia.textContent == diasdoMes())) {
             trConstructor(contador2);
         } else {
-
             // Mudanças dos dias 
-            if (dDia.textContent == diasdoMes()) {
-                dMes.textContent++; dDia.textContent = 1
-            };
+            dMes.textContent++;
+            dDia.textContent = 1;
             if (dMes.textContent == 12) {
                 dAno.textContent++; dMes.textContent = ''
             };
         }
+        checks(contador2);
     }
     const callbacks = {};
 
     function trConstructor(cc) {
-            const input = document.getElementById(`cbox${cc}`);
-            const callback = () => {
-                criarTabela(cc);
-            };
+        const input = document.getElementById(`cbox${cc}`);
+        const callback = () => {
+            criarTabela(cc);
+        };
 
-            callbacks[cc] = callback;
-            input.addEventListener('click', callback);
+        callbacks[cc] = callback;
+        input.addEventListener('click', callback);
 
-            for (let y = 2; y < cc; y++) {
-                let input2 = document.getElementById(`cbox${y}`);
-                if (input2 && callbacks[y]) {
-                    input2.removeEventListener('click', callbacks[y]);
-                    input2.checked = true;
-                }
+        for (let y = 2; y < cc; y++) {
+            let input2 = document.getElementById(`cbox${y}`);
+            if (input2 && callbacks[y]) {
+                input2.removeEventListener('click', callbacks[y]);
             }
+        }
     }
+    // check ativo / reset da tabela
+    const checks = (cc) => {
+        //cheks
+        for (let x = 2; x < cc; x++) {
+            let input2 = document.getElementById(`cbox${x}`);
+            if (input2 && callbacks[x]) {
+                input2.checked = true;
+            }
+        }
+        /*reset //falho* melhorar o codigo para funcionar atraves de parametros para corigir o reset...*/
+        if (cc == diasdoMes()) {
+            if (callbacks[cc - 1]) {
+                let input3 = document.getElementById(`cbox${cc}`);
+                input3.addEventListener('click', () => {
+                    const tbody = document.getElementById("tCorpo");
+                    if (tbody.children.length > 0) {
+                        let firstTR = document.getElementById('tr1');
+                        tbody.innerHTML = firstTR.outerHTML;
+                    }
+                    alavanca = 0;
+                    dDia.textContent = 1;
+                });
+            }
+        }
+    }
+
 }
 
