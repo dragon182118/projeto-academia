@@ -106,7 +106,7 @@ article > p {
     transform: translate(-50%);
 }
 div#cont {
-    height: 300px;
+    height: auto;
     overflow-y: scroll;
     width: 95%;
     margin: auto;
@@ -146,6 +146,21 @@ tfoot > tr {
 ::-webkit-scrollbar {
     width: 0px;
     height: 0px;
+}
+#exNew {
+    padding: 10px;
+    width: 95%;
+    margin-left: 2.5%;
+    background-color: rgb(109, 108, 108);
+    color: black;
+    font-size: 1.5em;
+    font-family: var(--font1);
+    font-weight: bolder;
+}
+#exNew:hover {
+    background-color: rgb(156, 156, 156);
+    transition-duration: 0.5s;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.37);
 }
 footer {
     height: 40px;

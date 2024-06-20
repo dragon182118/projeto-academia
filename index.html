@@ -42,7 +42,7 @@
             </section>
             <section>
                 <div id="cont">
-                    <table>
+                    <table id="table">
                         <caption>Tabela de Exercícios</caption>
                         <thead>
                             <tr>
@@ -56,23 +56,21 @@
                             </tr>
                         </thead>
                         <tbody id="tCorpo">
-                            <tr id="tr1">
-                                <td class="cent"><label for="cbox" class="number">1</label></td>
-                                <td class="cent"><input type="checkbox" name="cbox" id="cbox"></td>
-                                <td>Flexão</td>
-                                <td>Prancha</td>
-                            </tr>
+                            <tr id="inicializador">
+                                <td colspan="4">Clique na tabela</td>
+                            </tr>  
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th scope="row">Tempo</th>
-                                <td><div id="dia" style="display: inline-block;">1</div> Dia(s)</td>
+                                <td><div id="dia" style="display: inline-block;"></div> Dia(s)</td>
                                 <td><div id="mes" style="display: inline-block;"></div> Mes(ses)</td>
                                 <td><div id="ano" style="display: inline-block;"></div> Ano(s)</td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
+                <button id="exNew">Novo Exercício</button>
             </section>
         </div>
     </main>
