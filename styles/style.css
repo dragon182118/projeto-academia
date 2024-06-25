@@ -138,6 +138,13 @@ td, th {
 .cent {
     text-align: center;
 }
+.checkColor {
+    background-color: green;
+}
+.checkColor.click {
+    background-color: red;
+    color: white;
+}
 tfoot > tr {
     background-color: var(--cor1);
     color: rgba(0, 0, 0, 0.836);

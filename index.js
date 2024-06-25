@@ -8,7 +8,8 @@ window.onload = function () {
     let year = new Date().getFullYear();
     let month = new Date().getMonth();
     const tbody = document.getElementById("tCorpo");
-    var newNome = {};
+    let exnome = ['Flexão', 'Prancha'];
+    let thTabela0 = {};
     // Registro dos dias
     const diasdoMes = () => {
 
@@ -35,15 +36,19 @@ window.onload = function () {
 
     // Cria o novo elemento na tabela
     const criarTabela = (contador, tdTabelaX) => {
+        
         for (let i = 0; i < contador; i++) {
 
-            const exEl = document.getElementById(i + 1)
+            const exEl = document.getElementById(i + 1);
+            const thTabela = document.getElementById('thExercicio');
+
 
             if (exEl) {
                 exEl.parentElement.parentElement.remove();
             }
 
             const trTabela = document.createElement("tr");
+
 
             let tdTabela1 = document.createElement("td");
             let tdTabela2 = document.createElement("td");
@@ -69,16 +74,27 @@ window.onload = function () {
             trTabela.appendChild(tdTabela1);
             trTabela.appendChild(tdTabela2);
 
-            for (let z = 0; z < tdTabelaX; z++) {
+            //criação dos th e tds
 
+            for (let k = 0; k < tdTabelaX; k++) {
+                if (thTabela0[k]) {
+                } else {
+                    thTabela0[k] = document.createElement("th");
+                    thTabela0[k].textContent = exnome[k];
+                    thTabela.appendChild(thTabela0[k]);
+                }
+            }
+
+            for (let z = 0; z < tdTabelaX; z++) {
                 let tdTabela0 = {};
                 tdTabela0[z] = document.createElement("td");
-                tdTabela0[z].textContent = Exnomes(z);
+                tdTabela0[z].textContent = exnome[z];
+                tdTabela0[z].className = "checkColor";
                 trTabela.appendChild(tdTabela0[z]);
             }
 
             tbody.appendChild(trTabela);
-
+        
         }
         dDia.textContent++;
 
@@ -93,23 +109,10 @@ window.onload = function () {
             };
         }
         checks(contador);
+        mudançaDeCor();
     }
     const callbacks = {};
-
-    document.getElementById('exNew').addEventListener('click', () => {
-        ala ++;
-        newNome = prompt('Digite o nome do novo exercício');
-        // funcionando, pegar os ids para modificar a tabela de acordo com o clique desse botão... th(thead). ver o que fazer com o tfoot...
-        
-    })
-    // Nomes dinamicos
-    function Exnomes(z) {
-        let exnome = ['Flexão', 'Prancha'];
-        if (newNome[z]) {
-            exnome.push(newNome);
-        }
-        return exnome[z];
-    }
+    //construção de novas linhas
     function trConstructor(cc) {
         const input = document.getElementById(`cbox${cc}`);
         const callback = () => {
@@ -126,7 +129,39 @@ window.onload = function () {
             }
         }
     }
+    // botão de adição de exercício
+    document.getElementById('exNew').addEventListener('click', () => {
+        let nNome = prompt('Digite o nome do novo exercício');
+        if (exnome[ala]) {
+        } else {
+            exnome[ala] = nNome;
+        }
+        ala++;
+        ajusteColspan(ala);
+    });
 
+    //ajuste no espaço do tfoot
+    function ajusteColspan(blo) {
+        let thexs = document.getElementById('thExercicios');
+        thexs.setAttribute('colspan', blo);
+
+        const tdFoot = document.querySelectorAll(".ajusteCol");
+        if (blo > 2) {
+            var numeroColspan = Math.ceil(blo / 3);
+            tdFoot.forEach((e) => {
+                e.setAttribute('colspan', numeroColspan);
+            })
+        }
+    }
+
+    //mudança na cor do td
+    const mudançaDeCor = () => {
+        document.querySelectorAll(".checkColor").forEach((e) => {
+            e.addEventListener('click', () => {
+                e.classList.toggle('click');
+            })
+        })
+    }
     // check ativo / reset da tabela
     const checks = (cc) => {
         //cheks
@@ -136,12 +171,11 @@ window.onload = function () {
                 input2.checked = true;
             }
         }
-        /*reset //falho* melhorar o codigo para funcionar atraves de parametros para corigir o reset...*/
+        /*reset*/
         if (cc == diasdoMes()) {
             if (callbacks[cc - 1]) {
                 let input3 = document.getElementById(`cbox${cc}`);
                 input3.addEventListener('click', () => {
-
                     if (tbody.children.length > 0) {
                         let firstTR = tbody.children[0].innerHTML;
                         tbody.innerHTML = firstTR;
