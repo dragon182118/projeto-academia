@@ -10,6 +10,7 @@ window.onload = function () {
     const tbody = document.getElementById("tCorpo");
     let exnome = ['Flexão', 'Prancha'];
     let thTabela0 = {};
+    let colorTDS = [];
     // Registro dos dias
     const diasdoMes = () => {
 
@@ -90,9 +91,13 @@ window.onload = function () {
                 tdTabela0[z] = document.createElement("td");
                 tdTabela0[z].textContent = exnome[z];
                 tdTabela0[z].className = "checkColor";
+                if (colorTDS[i]) {
+                    tdTabela0[z].classList.add('click');
+                    //errado verificar a lógica
+                }
                 trTabela.appendChild(tdTabela0[z]);
             }
-
+            
             tbody.appendChild(trTabela);
         
         }
@@ -156,9 +161,12 @@ window.onload = function () {
 
     //mudança na cor do td
     const mudançaDeCor = () => {
-        document.querySelectorAll(".checkColor").forEach((e) => {
+        document.querySelectorAll(".checkColor").forEach((e, i) => {
             e.addEventListener('click', () => {
                 e.classList.toggle('click');
+                if (e.classList.contains('click')){
+                    colorTDS[i] = e;
+                }
             })
         })
     }
