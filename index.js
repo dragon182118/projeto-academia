@@ -10,7 +10,7 @@ window.onload = function () {
     const tbody = document.getElementById("tCorpo");
     let exnome = ['Flexão', 'Prancha'];
     let thTabela0 = {};
-    let colorTDS = [];
+    let colorTDS = {};
     // Registro dos dias
     const diasdoMes = () => {
 
@@ -91,11 +91,12 @@ window.onload = function () {
                 tdTabela0[z] = document.createElement("td");
                 tdTabela0[z].textContent = exnome[z];
                 tdTabela0[z].className = "checkColor";
-                if (colorTDS[i]) {
-                    tdTabela0[z].classList.add('click');
-                    //errado verificar a lógica
-                }
+                tdTabela0[z].id = `${exnome[z]}${i + 1}`;
                 trTabela.appendChild(tdTabela0[z]);
+
+                if (colorTDS[tdTabela0[z].id]) {
+                    tdTabela0[z].classList.add('click');
+                }
             }
             
             tbody.appendChild(trTabela);
@@ -126,6 +127,13 @@ window.onload = function () {
 
         callbacks[cc] = callback;
         input.addEventListener('click', callback);
+        for (let q = 0; q < ala; q++) {
+            const tdTab = document.getElementById(exnome[q] + cc);
+            if (colorTDS[tdTab.id]) {
+                tdTab.classList.add('click');
+            }
+        }
+
 
         for (let y = 1; y < cc; y++) {
             let input2 = document.getElementById(`cbox${y}`);
@@ -136,6 +144,7 @@ window.onload = function () {
     }
     // botão de adição de exercício
     document.getElementById('exNew').addEventListener('click', () => {
+        // criar um apanhador de erros...
         let nNome = prompt('Digite o nome do novo exercício');
         if (exnome[ala]) {
         } else {
@@ -161,15 +170,19 @@ window.onload = function () {
 
     //mudança na cor do td
     const mudançaDeCor = () => {
-        document.querySelectorAll(".checkColor").forEach((e, i) => {
+        document.querySelectorAll(".checkColor").forEach((e) => {
             e.addEventListener('click', () => {
                 e.classList.toggle('click');
                 if (e.classList.contains('click')){
-                    colorTDS[i] = e;
+                    colorTDS[e.id] = true;
+                } else {
+                    delete colorTDS[e.id];
                 }
             })
         })
     }
+
+    // PENSAR E CRIAR ALGO PARA PODER REMOVER OS NOVOS ELEMENTOS CRIADOS PELO BOTÃO...
     // check ativo / reset da tabela
     const checks = (cc) => {
         //cheks
