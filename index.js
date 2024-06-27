@@ -35,7 +35,7 @@ window.onload = function () {
         });
     }
 
-    // Cria o novo elemento na tabela
+    // Cria o novo elemento na tabel
     const criarTabela = (contador, tdTabelaX) => {
         
         for (let i = 0; i < contador; i++) {
