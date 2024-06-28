@@ -37,7 +37,7 @@ window.onload = function () {
 
     // Cria o novo elemento na tabel
     const criarTabela = (contador, tdTabelaX) => {
-        
+
         for (let i = 0; i < contador; i++) {
 
             const exEl = document.getElementById(i + 1);
@@ -98,9 +98,9 @@ window.onload = function () {
                     tdTabela0[z].classList.add('click');
                 }
             }
-            
+
             tbody.appendChild(trTabela);
-        
+
         }
         dDia.textContent++;
 
@@ -144,14 +144,22 @@ window.onload = function () {
     }
     // botão de adição de exercício
     document.getElementById('exNew').addEventListener('click', () => {
-        // criar um apanhador de erros...
         let nNome = prompt('Digite o nome do novo exercício');
-        if (exnome[ala]) {
-        } else {
-            exnome[ala] = nNome;
+        try {
+            if (isNaN(nNome) && nNome !== undefined && nNome !== null && nNome.length >= 3) {
+                if (exnome[ala]) {
+                } else {
+                    exnome[ala] = nNome;
+                }
+                ala++;
+                ajusteColspan(ala);
+            }else {
+                throw new Error('Apenas palavras com mais de 3 letras');
+            }
+        } catch (error) {
+            alert('Erro : ' + error.message);
         }
-        ala++;
-        ajusteColspan(ala);
+
     });
 
     //ajuste no espaço do tfoot
@@ -173,7 +181,7 @@ window.onload = function () {
         document.querySelectorAll(".checkColor").forEach((e) => {
             e.addEventListener('click', () => {
                 e.classList.toggle('click');
-                if (e.classList.contains('click')){
+                if (e.classList.contains('click')) {
                     colorTDS[e.id] = true;
                 } else {
                     delete colorTDS[e.id];

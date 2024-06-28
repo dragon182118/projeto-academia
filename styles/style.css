@@ -169,6 +169,7 @@ tfoot > tr {
     transition-duration: 0.5s;
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.37);
 }
+
 footer {
     height: 40px;
     text-align: center;
