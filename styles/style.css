@@ -107,7 +107,7 @@ article > p {
 }
 div#cont {
     height: auto;
-    overflow-y: scroll;
+    overflow-x: auto;
     width: 95%;
     margin: auto;
 }
@@ -116,6 +116,7 @@ table {
     border-collapse: collapse; 
     background-color: white;
     color: black;    
+
     transition: width .3s, heigth .3s;
 }
 caption {
@@ -156,7 +157,7 @@ tfoot > tr {
 }
 #exNew {
     padding: 10px;
-    width: 95%;
+    width: 95.3%;
     margin-left: 2.5%;
     background-color: rgb(109, 108, 108);
     color: black;
