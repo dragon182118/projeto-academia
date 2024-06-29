@@ -12,7 +12,13 @@
     --font1: "Reddit Sans", Arial, Helvetica, sans-serif;
     --cor1: rgb(255, 182, 18);
 }
-
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
 .reddit-sans-uniquifier{
     font-family: "Reddit Sans", sans-serif;
     font-optical-sizing: auto;
@@ -156,16 +162,31 @@ tfoot > tr {
     height: 0px;
 }
 #exNew {
-    padding: 10px;
-    width: 95.3%;
-    margin-left: 2.5%;
-    background-color: rgb(109, 108, 108);
+    width: 15%;
+    height: 25px;
+    background-color: rgb(3, 104, 0);
     color: black;
-    font-size: 1.5em;
     font-family: var(--font1);
     font-weight: bolder;
+    float: left;
+    box-shadow: 0px 0px 10px rgba(26, 26, 26, 0.493);
 }
 #exNew:hover {
+    background-color: rgb(156, 156, 156);
+    transition-duration: 0.5s;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.37);
+}
+#exRm {
+    width: 15%;
+    height: 25px;
+    background-color: rgb(114, 0, 0);
+    color: black;
+    font-family: var(--font1);
+    font-weight: bolder;
+    float: right;
+    box-shadow: 0px 0px 10px rgba(26, 26, 26, 0.493);
+}
+#exRm:hover {
     background-color: rgb(156, 156, 156);
     transition-duration: 0.5s;
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.37);

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto-Academia</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="styles/style.css" media="all">
     <link rel="stylesheet" href="styles/media_queries.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
@@ -17,16 +18,16 @@
         <h1>Projeto Academia</h1>
         <nav>
             <abbr title="Sing in/Login">
-                <a href="pages/login.html" target="_self" rel="next" id="login" >
-                    <span class="material-icons">person</span>          
+                <a href="pages/login.html" target="_self" rel="next" id="login">
+                    <span class="material-icons">person</span>
                 </a>
-            </abbr>     
+            </abbr>
         </nav>
     </header>
     <main>
         <div id="back">
             <section id="cot1">
-                <article class="box" >
+                <article class="box">
                     <h2>Introdução</h2>
                     <p>Este é apenas um projeto teste para o auxílio de metas aca-
                         demicas, se você deseja algo que lhe ofereça ajuda para
@@ -37,7 +38,8 @@
             <section class="box" id="ifr">
                 <h2>Github do Criador</h2>
                 <div id="ifr2">
-                    <iframe src="pages/github.html" frameborder="0" id="iframe" referrerpolicy="no-referrer" sandbox="allow-popups"></iframe>
+                    <iframe src="pages/github.html" frameborder="0" id="iframe" referrerpolicy="no-referrer"
+                        sandbox="allow-popups"></iframe>
                 </div>
             </section>
             <section>
@@ -48,7 +50,10 @@
                             <tr>
                                 <th rowspan="2" scope="col">Dias</th>
                                 <th rowspan="2" scope="col">Check</th>
-                                <th colspan="2" scope="colgroup" id="thExercicios">Exercícios</th>
+                                <th colspan="2" scope="colgroup" id="thExercicios"> 
+                                    <button id="exNew"><span class="material-symbols-outlined">add</span></button>
+                                    <button id="exRm"><span class="material-symbols-outlined"> remove </span></button>Exercícios
+                                </th>
                             </tr>
                             <tr id="thExercicio">
                             </tr>
@@ -56,19 +61,25 @@
                         <tbody id="tCorpo">
                             <tr id="inicializador">
                                 <td colspan="4">Clique na tabela</td>
-                            </tr>  
+                            </tr>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th scope="row">Tempo</th>
-                                <td class="ajusteCol"><div id="dia" style="display: inline-block;"></div> Dia(s)</td>
-                                <td class="ajusteCol"><div id="mes" style="display: inline-block;"></div> Mes(ses)</td>
-                                <td class="ajusteCol"><div id="ano" style="display: inline-block;"></div> Ano(s)</td>
+                                <td class="ajusteCol">
+                                    <div id="dia" style="display: inline-block;"></div> Dia(s)
+                                </td>
+                                <td class="ajusteCol">
+                                    <div id="mes" style="display: inline-block;"></div> Mes(ses)
+                                </td>
+                                <td class="ajusteCol">
+                                    <div id="ano" style="display: inline-block;"></div> Ano(s)
+                                </td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
-                <button id="exNew">Novo Exercício</button>
+
             </section>
         </div>
     </main>
@@ -76,4 +87,5 @@
         <p>Site criado por <a href="https://github.com/dragon182118" id="fta">Jonas Otacilio</a> para aprendizado.</p>
     </footer>
 </body>
+
 </html>

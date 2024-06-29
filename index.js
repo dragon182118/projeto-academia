@@ -9,8 +9,10 @@ window.onload = function () {
     let month = new Date().getMonth();
     const tbody = document.getElementById("tCorpo");
     let exnome = ['Flexão', 'Prancha'];
-    let thTabela0 = {};
+    let thTabela0 = [];
     let colorTDS = {};
+    let contadorX = -Infinity;
+    let boolean = false;
     // Registro dos dias
     const diasdoMes = () => {
 
@@ -27,7 +29,7 @@ window.onload = function () {
         document.getElementById('table').addEventListener("click", () => {
             alavanca++
             if (alavanca <= 1) {
-                criarTabela(1, 2);
+                criarTabela(1, 2, boolean);
                 dDia.textContent = 1;
                 document.getElementById('inicializador').remove();
             }
@@ -36,7 +38,7 @@ window.onload = function () {
     }
 
     // Cria o novo elemento na tabel
-    const criarTabela = (contador, tdTabelaX) => {
+    const criarTabela = (contador, tdTabelaX, boolean) => {
 
         for (let i = 0; i < contador; i++) {
 
@@ -81,6 +83,7 @@ window.onload = function () {
                 if (thTabela0[k]) {
                 } else {
                     thTabela0[k] = document.createElement("th");
+                    thTabela0[k].id = `th${k}`;
                     thTabela0[k].textContent = exnome[k];
                     thTabela.appendChild(thTabela0[k]);
                 }
@@ -102,7 +105,11 @@ window.onload = function () {
             tbody.appendChild(trTabela);
 
         }
-        dDia.textContent++;
+        if (boolean == false) {
+            dDia.textContent++;
+        }else {
+            boolean = false;
+        }
 
         if (!(contador == diasdoMes())) {
             trConstructor(contador);
@@ -116,13 +123,15 @@ window.onload = function () {
         }
         checks(contador);
         mudançaDeCor();
+        contadorX = contador;
     }
     const callbacks = {};
     //construção de novas linhas
     function trConstructor(cc) {
         const input = document.getElementById(`cbox${cc}`);
         const callback = () => {
-            criarTabela(cc + 1, ala);
+            boolean = false;
+            criarTabela(cc + 1, ala, boolean);
         };
 
         callbacks[cc] = callback;
@@ -144,20 +153,24 @@ window.onload = function () {
     }
     // botão de adição de exercício
     document.getElementById('exNew').addEventListener('click', () => {
-        let nNome = prompt('Digite o nome do novo exercício');
-        try {
-            if (isNaN(nNome) && nNome !== undefined && nNome !== null && nNome.length >= 3) {
-                if (exnome[ala]) {
+        if (alavanca == 2) {
+            let nNome = prompt('Digite o nome do novo exercício');
+            try {
+                if (isNaN(nNome) && nNome !== undefined && nNome !== null && nNome.length >= 3) {
+                    if (exnome[ala]) {
+                    } else {
+                        exnome[ala] = nNome;
+                    }
+                    ala++;
+                    ajusteColspan(ala);
+                    boolean = true;
+                    criarTabela(contadorX, ala, boolean);
                 } else {
-                    exnome[ala] = nNome;
+                    throw new Error('Apenas palavras com mais de 3 letras');
                 }
-                ala++;
-                ajusteColspan(ala);
-            }else {
-                throw new Error('Apenas palavras com mais de 3 letras');
+            } catch (error) {
+                alert('Erro : ' + error.message);
             }
-        } catch (error) {
-            alert('Erro : ' + error.message);
         }
 
     });
@@ -166,7 +179,6 @@ window.onload = function () {
     function ajusteColspan(blo) {
         let thexs = document.getElementById('thExercicios');
         thexs.setAttribute('colspan', blo);
-
         const tdFoot = document.querySelectorAll(".ajusteCol");
         if (blo > 2) {
             var numeroColspan = Math.ceil(blo / 3);
@@ -189,8 +201,25 @@ window.onload = function () {
             })
         })
     }
-
-    // PENSAR E CRIAR ALGO PARA PODER REMOVER OS NOVOS ELEMENTOS CRIADOS PELO BOTÃO...
+    // Remover Exercícios
+    document.getElementById('exRm').addEventListener('click', () => {
+        if (alavanca == 2) {
+            if (ala > 2) {
+                exnome.splice(ala - 1);
+                let thremove = document.getElementById(`th${ala - 1}`);
+                if (thremove) {
+                    thTabela0.splice([ala - 1]);
+                    thremove.remove();
+                }
+                ala--;
+                boolean = true;
+                criarTabela(contadorX, ala, boolean);
+                ajusteColspan(ala);
+            } else {
+                alert('Primeiro, crie um novo exercício.');
+            }
+        }
+    })
     // check ativo / reset da tabela
     const checks = (cc) => {
         //cheks
