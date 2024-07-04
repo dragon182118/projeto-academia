@@ -14,15 +14,15 @@ app.use(express.static(path.join(__dirname))); // Servindo arquivos estáticos d
 const db = new sqlite3.Database(':memory:');
 
 db.serialize(() => {
-  db.run("CREATE TABLE IF NOT EXISTS estado (id INTEGER PRIMARY KEY, exnome TEXT, colorTDS TEXT, alavanca INTEGER, contadorX INTEGER, boolean INTEGER, ala INTEGER)");
+  db.run("CREATE TABLE IF NOT EXISTS estado (id INTEGER PRIMARY KEY, exnome TEXT, colorTDS TEXT, alavanca INTEGER, contadorX INTEGER, boolean INTEGER, ala INTEGER, dMes TEXT, dAno TEXT)");
 });
 
 // Endpoint para salvar estado
 app.post('/save', (req, res) => {
-  const { exnome, colorTDS, alavanca, contadorX, boolean, ala } = req.body;
+  const { exnome, colorTDS, alavanca, contadorX, boolean, ala, dMes, dAno } = req.body;
   
-  const query = `INSERT INTO estado (exnome, colorTDS, alavanca, contadorX, boolean, ala) VALUES (?, ?, ?, ?, ?, ?)`;
-  const params = [JSON.stringify(exnome), JSON.stringify(colorTDS), alavanca, contadorX, boolean, ala];
+  const query = `INSERT INTO estado (exnome, colorTDS, alavanca, contadorX, boolean, ala, dMes, dAno) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+  const params = [JSON.stringify(exnome), JSON.stringify(colorTDS), alavanca, contadorX, boolean, ala, dMes, dAno];
   
   db.run(query, params, function(err) {
     if (err) {
@@ -47,7 +47,9 @@ app.get('/load', (req, res) => {
         alavanca: row.alavanca,
         contadorX: row.contadorX,
         boolean: row.boolean,
-        ala: row.ala
+        ala: row.ala,
+        dMes: row.dMes,
+        dAno: row.dAno
       });
     } else {
       res.json({ error: "No data found" });

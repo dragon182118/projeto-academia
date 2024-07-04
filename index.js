@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
     iniciarAplicacao();
 };
 
@@ -17,6 +17,7 @@ function iniciarAplicacao() {
     let colorTDS = {};
     let contadorX = -Infinity;
     let boolean = false;
+    const ini = document.getElementById('inicializador');
 
     // Função para carregar estado do servidor
     async function carregarEstado() {
@@ -26,36 +27,23 @@ function iniciarAplicacao() {
             if (data.error) {
                 console.log('No data found');
             } else {
-                ({ exnome, colorTDS, alavanca, contadorX, boolean, ala } = data);
+                exnome = data.exnome;
+                colorTDS = data.colorTDS;
+                alavanca = data.alavanca;
+                contadorX = data.contadorX;
+                boolean = data.boolean;
+                ala = data.ala;
+                dMes.textContent = data.dMes;
+                dAno.textContent = data.dAno;
                 criarTabela(contadorX, ala, boolean);
             }
         } catch (error) {
             console.error('Erro ao carregar estado:', error);
         }
-    }
-
-    // Função para salvar estado no servidor
-    async function salvarEstado() {
-        try {
-            const response = await fetch('/save', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    exnome,
-                    colorTDS,
-                    alavanca,
-                    contadorX,
-                    boolean,
-                    ala
-                })
-            });
-            const data = await response.json();
-            console.log('Estado salvo com ID:', data.id);
-        } catch (error) {
-            console.error('Erro ao salvar estado:', error);
+        if (alavanca == 2) {
+            ini.remove();
         }
+        ajusteColspan(ala);
     }
 
     // Chama a função para carregar estado ao iniciar a aplicação
@@ -70,12 +58,12 @@ function iniciarAplicacao() {
 
     if (alavanca == 0) {
         document.getElementById('table').addEventListener("click", () => {
-            const ini = document.getElementById('inicializador');
+
             ini.remove();
             alavanca++;
             if (alavanca <= 1) {
                 criarTabela(1, 2, boolean);
-                dDia.textContent = 1;    
+                dDia.textContent = 1;
             }
             alavanca = 2;
             salvarEstado();
@@ -138,20 +126,13 @@ function iniciarAplicacao() {
         }
 
         if (boolean == false) {
-            dDia.textContent++;
+            dDia.textContent = contador;
         } else {
             boolean = false;
         }
 
         if (!(contador == diasdoMes())) {
             trConstructor(contador);
-        } else {
-            dMes.textContent++;
-            dDia.textContent = 1;
-            if (dMes.textContent == 12) {
-                dAno.textContent++;
-                dMes.textContent = '';
-            }
         }
         checks(contador);
         mudançaDeCor();
@@ -271,7 +252,6 @@ function iniciarAplicacao() {
                         tbody.innerHTML = firstTR;
                     }
                     alavanca = 0;
-                    dDia.textContent = 1;
                     for (let i = 1; i <= diasdoMes(); i++) {
                         delete colorTDS[`Flexão${i}`];
                         delete colorTDS[`Prancha${i}`];
@@ -286,11 +266,37 @@ function iniciarAplicacao() {
                     dMes.textContent++;
                     if (dMes.textContent == 12) {
                         dAno.textContent++;
-                        dMes.textContent = '';
+                        dMes.textContent = 1;
                     }
                     salvarEstado();
                 });
             }
         }
     };
+
+    // Função para salvar estado no servidor
+    async function salvarEstado() {
+        try {
+            const response = await fetch('/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    exnome,
+                    colorTDS,
+                    alavanca,
+                    contadorX,
+                    boolean,
+                    ala,
+                    dMes: dMes.textContent,
+                    dAno: dAno.textContent
+                })
+            });
+            const data = await response.json();
+            console.log('Estado salvo com ID:', data.id);
+        } catch (error) {
+            console.error('Erro ao salvar estado:', error);
+        }
+    }
 }
