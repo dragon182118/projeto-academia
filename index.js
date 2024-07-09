@@ -237,8 +237,8 @@ function iniciarAplicacao() {
 
     const checks = (cc) => {
         for (let x = 1; x < cc; x++) {
-            let input2 = document.getElementById(`cbox${x}`);
-            if (input2 && callbacks[x]) {
+            let input2 = document.getElementById(`cbox${x}`); 
+            if (input2) {
                 input2.checked = true;
             }
         }

@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const { error } = require('console');
 
 const app = express();
 const port = 3000;
@@ -11,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname))); // Servindo arquivos estáticos da pasta raiz
 
 // Conectando ao banco de dados SQLite
-const db = new sqlite3.Database(':memory:');
+const db = new sqlite3.Database('./database.db');
 
 db.serialize(() => {
   db.run("CREATE TABLE IF NOT EXISTS estado (id INTEGER PRIMARY KEY, exnome TEXT, colorTDS TEXT, alavanca INTEGER, contadorX INTEGER, boolean INTEGER, ala INTEGER, dMes TEXT, dAno TEXT)");
@@ -54,6 +55,17 @@ app.get('/load', (req, res) => {
     } else {
       res.json({ error: "No data found" });
     }
+  });
+});
+
+//reset 
+app.post('/reset', (req, res) => {
+  const query = "DELETE FROM estado";
+  db.run(query, [], function(err) {
+    if (err) {
+      return res.status(500).json({ error: err.message}) 
+    }
+    res.json({ message: "Estado resetado com sucesso" })
   });
 });
 
